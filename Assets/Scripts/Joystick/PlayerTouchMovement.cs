@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
 public class PlayerTouchMovement : MonoBehaviour
 {
     [SerializeField] private Vector2 _joystickSize = new Vector2(100, 100);
@@ -14,12 +11,14 @@ public class PlayerTouchMovement : MonoBehaviour
     [SerializeField] private float _playerSpeed = 5f;
     
     private CharacterController _characterController;
+    private Animator _animator;
     private Finger _movementFinger;
     private Vector2 _movementAmount;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -48,8 +47,10 @@ public class PlayerTouchMovement : MonoBehaviour
 
     private void HandleFingerDown(Finger touchedFinger)
     {
-        if (_movementFinger == null/* && touchedFinger.screenPosition.x <= Screen.width / 2f*/)
+        if (_movementFinger == null)
         {
+            _animator.SetBool("IsRunning", true);
+            
             _movementFinger = touchedFinger;
             _movementAmount = Vector2.zero;
             _joystick.gameObject.SetActive(true);
@@ -62,6 +63,8 @@ public class PlayerTouchMovement : MonoBehaviour
     {
         if (lostFinger == _movementFinger)
         {
+            _animator.SetBool("IsRunning", false);
+            
             _movementFinger = null;
             _joystick.knob.anchoredPosition = Vector2.zero;
             _joystick.gameObject.SetActive(false);
