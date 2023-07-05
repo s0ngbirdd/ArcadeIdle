@@ -1,14 +1,19 @@
-public class StockDisplayerSword : StockDisplayer
+using Player;
+
+namespace StockDisplayers
 {
-    public override void OnEnable()
+    public class StockDisplayerSword : StockDisplayer
     {
-        base.OnEnable();
-        PlayerBackpack.OnDropObjectSword += IncreaseStockObjectNumber;
-    }
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            PlayerBackpack.OnDropObjectSword += IncreaseStockObjectNumber;
+        }
     
-    public override void OnDisable()
-    {
-        base.OnDisable();
-        PlayerBackpack.OnDropObjectSword -= IncreaseStockObjectNumber;
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            PlayerBackpack.OnDropObjectSword -= IncreaseStockObjectNumber;
+        }
     }
 }

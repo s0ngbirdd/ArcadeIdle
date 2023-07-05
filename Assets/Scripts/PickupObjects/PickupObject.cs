@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class PickupObject : MonoBehaviour
+namespace PickupObjects
 {
+    public class PickupObject : MonoBehaviour
+    {
     
+    }
 }

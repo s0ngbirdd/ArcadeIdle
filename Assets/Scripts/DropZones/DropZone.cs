@@ -1,27 +1,31 @@
 using System;
+using Player;
 using UnityEngine;
 
-public abstract class DropZone : MonoBehaviour
+namespace DropZones
 {
-    public event Action OnPlayerEnter;
-    public event Action OnPlayerExit;
-    
-    protected PlayerBackpack _playerBackpack;
-    
-    private void Start()
+    public abstract class DropZone : MonoBehaviour
     {
-        _playerBackpack = FindObjectOfType<PlayerBackpack>();
-    }
+        public event Action OnPlayerEnter;
+        public event Action OnPlayerExit;
+    
+        protected PlayerBackpack _playerBackpack;
+    
+        private void Start()
+        {
+            _playerBackpack = FindObjectOfType<PlayerBackpack>();
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        OnPlayerEnter?.Invoke();
-    }
+        private void OnTriggerEnter(Collider other)
+        {
+            OnPlayerEnter?.Invoke();
+        }
     
-    private void OnTriggerExit(Collider other)
-    {
-        OnPlayerExit?.Invoke();
-    }
+        private void OnTriggerExit(Collider other)
+        {
+            OnPlayerExit?.Invoke();
+        }
 
-    public abstract void OnTriggerStay(Collider other);
+        public abstract void OnTriggerStay(Collider other);
+    }
 }

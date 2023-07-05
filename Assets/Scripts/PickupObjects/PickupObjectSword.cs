@@ -1,4 +1,7 @@
-public class PickupObjectSword : PickupObject
+namespace PickupObjects
 {
+    public class PickupObjectSword : PickupObject
+    {
     
+    }
 }

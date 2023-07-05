@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class DropZoneIron : DropZone
+namespace DropZones
 {
-    public override void OnTriggerStay(Collider other)
+    public class DropZoneIron : DropZone
     {
-        _playerBackpack.DropIronObject(transform.parent);
+        public override void OnTriggerStay(Collider other)
+        {
+            _playerBackpack.DropIronObject(transform.parent);
+        }
     }
 }

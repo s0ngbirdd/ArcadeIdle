@@ -1,20 +1,25 @@
-public class StockDisplayerIron : StockDisplayer
+using Player;
+
+namespace StockDisplayers
 {
-    public override void OnEnable()
+    public class StockDisplayerIron : StockDisplayer
     {
-        base.OnEnable();
-        PlayerBackpack.OnDropObjectIron += IncreaseStockObjectNumber;
-    }
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            PlayerBackpack.OnDropObjectIron += IncreaseStockObjectNumber;
+        }
     
-    public override void OnDisable()
-    {
-        base.OnDisable();
-        PlayerBackpack.OnDropObjectIron -= IncreaseStockObjectNumber;
-    }
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            PlayerBackpack.OnDropObjectIron -= IncreaseStockObjectNumber;
+        }
     
-    public void DecreseStockObjectNumber()
-    {
-        _stockObjectNumber--;
-        _stockObjectNumberText.text = _stockObjectNumber.ToString();
+        public void DecreseStockObjectNumber()
+        {
+            _stockObjectNumber--;
+            _stockObjectNumberText.text = _stockObjectNumber.ToString();
+        }
     }
 }
